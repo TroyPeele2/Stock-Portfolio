@@ -6,11 +6,9 @@ function StockDisplay({ total }) {
 
   console.log(total);
   return (
-    <div>
-      <h2>
-        Total:
-        {totalDisplay}
-      </h2>
+    <div className='currency-total'>
+      Total:
+      {totalDisplay}
     </div>
   );
 }

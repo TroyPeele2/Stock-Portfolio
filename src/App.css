@@ -1,18 +1,18 @@
-.App {
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
   font-family: 'Montserrat', sans-serif;
 }
 
 .NavbarPages {
   background: linear-gradient(90deg, rgb(55, 14, 236), rgb(154, 126, 255));
   height: 80px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 /* currently not using a logo. May plan for one later*/
@@ -32,28 +32,6 @@
   text-decoration: none;
   text-align: center;
 }
-/* .nav-menu {
-  color: #fff;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 20px;
-
-  list-style: none;
-  text-align: center;
-  justify-content: center;
-}
-
-.nav-menu {
-  color: #fff;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 20px;
-  list-style: none;
-  text-align: center;
-  width: 70vw;
-  justify-content: end;
-  margin-right: 20px;
-} */
 
 .nav-menu:hover {
   background-color: #6d76f7;
@@ -62,15 +40,15 @@
 }
 
 .box {
-  /* display: grid;
-  flex-direction: row;
-  align-items: start; */
   display: flex;
   justify-content: center;
   position: relative;
 }
 .page-header {
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
   /* justify-content: center;
 
   align-self: center; */
@@ -83,7 +61,7 @@
   border-radius: 8px;
   position: absolute;
   right: 0;
-  margin-top: 1ch;
+  margin-top: 6px;
   /* align-self: end;
   margin-left: auto;
   cursor: pointer; */
@@ -97,7 +75,9 @@
   text-align: left;
   font-size: 1.6rem;
   margin-top: 5%;
-  background-color: grey;
+  background-color: rgb(179, 175, 175);
+  /* padding: 0.5rem 1rem; */
+  border-radius: 8px;
 }
 .video-recording {
   font-size: 1.6rem;
@@ -112,3 +92,47 @@
 /* cursor: pointer;
   margin-left: auto;
 } */
+
+/* Portfolio Page */
+
+.add-conversion {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  width: 100%;
+}
+.conversion {
+  display: flex;
+  padding-left: 18%;
+  width: 45%;
+}
+.add-stock {
+  display: flex;
+  width: 50%;
+}
+.currency-total {
+  text-align: center;
+  font-size: 29px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+/* Portfolio table */
+.stock-portfolio {
+  background-color: rgb(179, 175, 175);
+  background-clip: content-box;
+  padding-top: 2%;
+  padding-left: 1%;
+  width: 99%;
+  text-align: center;
+}
+.portfolio-header {
+  background-color: rgb(80, 35, 243);
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.portfolio-content {
+  text-align: center;
+  font-size: 1.4rem;
+  text-indent: 1%;
+}

@@ -3,7 +3,9 @@ import StockData from '../StockData';
 import StockDisplay from '../StockDisplay';
 
 function portfolioHelp() {
-  alert('Hello there here are the instructions');
+  alert(
+    "1. Enter a stock by its NYSE ticker symbol ex. Google's stock ticker is Goog \n2. Enter quantity of shares then hit submit to add stock to your portfolio \n3. The value of your portfolio will reflect the total sum of all shares you own. \n4. If desired, you can select to convert your Portfolio from USD to another Crypto"
+  );
 }
 
 function Portfolio() {
@@ -27,13 +29,13 @@ function Portfolio() {
       </div>
       <div></div>
 
-      <form>
+      {/* <form>
         <label htmlFor=''>
           Convert to another currency
           <input type='text' />
         </label>
         <input type='submit'></input>
-      </form>
+      </form> */}
 
       <StockData addItem={addItemToData} />
     </div>
