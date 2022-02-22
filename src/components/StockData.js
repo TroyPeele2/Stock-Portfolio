@@ -24,7 +24,7 @@ function StockData(props) {
       .get(stockData)
       .then((response) => {
         // represents the stock ticker
-        console.log(response.data.results[0]['T']);
+        // console.log(response.data.results[0]['T']);
 
         // this represents the stock closing price
         let tempPrice = response.data.results[0]['c'].toFixed(2);
@@ -41,8 +41,24 @@ function StockData(props) {
         console.log(error);
       });
     console.log(data);
+    setTicker('');
+    setQuantity(0);
   };
 
+  // function DeleteStock(index) {
+  //   let currentStock = data[index];
+  //   let currentTotal = currentStock[3];
+  //   console.log(index);
+  //   const temp = data;
+  //   temp.splice(index, 1);
+  //   updateData(temp);
+  // }
+  const DeleteStock = (index) => {
+    // Create a copy of row data without the current row
+    const newData = [...data.slice(0, index), ...data.slice(index + 1)];
+    // Update state
+    updateData(newData);
+  };
   return (
     <div>
       <StockDisplay total={data} />
@@ -85,12 +101,15 @@ function StockData(props) {
             </tr>
           </thead>
           <tbody>
-            {data.map((stock) => (
+            {data.map((stock, index) => (
               <tr>
                 <td className='portfolio-content'>{stock[0]}</td>
                 <td className='portfolio-content'>{stock[1]}</td>
                 <td className='portfolio-content'>${stock[2]}</td>
                 <td className='portfolio-content'>${stock[3]}</td>
+                <td>
+                  <button onClick={() => DeleteStock(index)}>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
