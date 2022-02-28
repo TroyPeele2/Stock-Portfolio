@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StockDisplay from './StockDisplay';
 
@@ -8,7 +9,43 @@ function StockData(props) {
   const [price, setPrice] = useState(0);
   const [total, setTotal] = useState(0);
   const [data, updateData] = useState([]);
+  const [bitcoin, setBitcoin] = useState(0);
 
+  const [portfolio, setPortfolio] = useState(0);
+  const [currency, setCurrency] = useState('USD');
+  const [value, setValue] = useState(0);
+
+  // making  a call to an api to get a bitcoin request.
+  const bitcoinConversion = (e) => {
+    if (e.target.value == 'BTC') {
+      // const polybit =
+      //   'https://api.polygon.io/v2/aggs/ticker/X:BTCUSD/range/1/day/2021-07-22/2021-07-22?adjusted=true&sort=asc&limit=120&apiKey=SuaIlAqCImCfcixB2Qn3FBuZP1mkqkfl';
+      const micro = 'http://127.0.0.1:5000/amount/';
+      axios
+        .get(micro)
+        .then((response) => {
+          console.log('here');
+          let data = parseFloat(response.data.conversion);
+          let bitPrice = data;
+          let quantityBitcoin = (portfolio / bitPrice).toFixed(5);
+          console.log(portfolio);
+          console.log(bitPrice);
+          console.log('number of shares');
+          console.log(quantityBitcoin);
+
+          // setBitcoin(bitPrice);
+          alert('You can buy ' + quantityBitcoin + ' shares of bitcoin');
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+      // console.log('bitcoin check');
+      // console.log(bitcoin);
+    }
+  };
+
+  ///////////
   // handles form on click function to add another stock to the portfolio
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +69,8 @@ function StockData(props) {
         let stock = [ticker, quantity, tempPrice, currTotal];
 
         // promise or
+        let newValue = Number(portfolio) + Number(currTotal);
+        setPortfolio(newValue);
         setPrice(tempPrice);
         setTotal(currTotal);
 
@@ -45,14 +84,6 @@ function StockData(props) {
     setQuantity(0);
   };
 
-  // function DeleteStock(index) {
-  //   let currentStock = data[index];
-  //   let currentTotal = currentStock[3];
-  //   console.log(index);
-  //   const temp = data;
-  //   temp.splice(index, 1);
-  //   updateData(temp);
-  // }
   const DeleteStock = (index) => {
     // Create a copy of row data without the current row
     const newData = [...data.slice(0, index), ...data.slice(index + 1)];
@@ -61,15 +92,22 @@ function StockData(props) {
   };
   return (
     <div>
-      <StockDisplay total={data} />
+      <div className='totalDisplay' id='disp'>
+        <div className='value' id='value'>
+          Total: {portfolio}
+        </div>
+        <StockDisplay total={data} />
+        <div className='currency-ticker' id='ticker'>
+          USD
+        </div>
+      </div>
+
       <div className='add-conversion'>
-        <form className='conversion'>
-          <label htmlFor=''>
-            Convert to another currency
-            <input type='text' />
-          </label>
-          <input type='submit'></input>
-        </form>
+        <select className='conversion' onChange={bitcoinConversion}>
+          <option value='USD'>USD</option>
+          <option value='BTC'>BTC</option>
+        </select>
+
         <form className='add-stock'>
           <label>Add a Stock: </label>
           <input

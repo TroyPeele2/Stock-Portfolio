@@ -98,23 +98,41 @@
 .add-conversion {
   padding-top: 2%;
   padding-bottom: 2%;
+  padding-left: 2%;
   display: flex;
   width: 100%;
 }
+.add-conversion:before {
+  content: 'Convert to another Currency';
+  color: black;
+  padding-right: 1%;
+}
 .conversion {
-  display: flex;
-  padding-left: 18%;
-  width: 45%;
+  width: 10%;
 }
 .add-stock {
+  padding-left: 10%;
   display: flex;
   width: 50%;
 }
-.currency-total {
-  text-align: center;
+
+.totalDisplay {
+  padding-left: 40%;
   font-size: 29px;
-  margin-top: 20px;
+  margin-top: 2px;
   margin-bottom: 15px;
+  display: inline-block;
+  justify-content: center;
+}
+.currency-total {
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+}
+.currency-ticker {
+  text-align: center;
+  display: inline-block;
+  padding-left: 4px;
 }
 /* Portfolio table */
 .stock-portfolio {
