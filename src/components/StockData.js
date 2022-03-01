@@ -16,6 +16,11 @@ function StockData(props) {
   const [value, setValue] = useState(0);
 
   // making  a call to an api to get a bitcoin request.
+  // useEffect(function changeValuation(amount, tick) {
+  //   setCurrency(tick);
+  //   setValue(amount);
+  // });
+
   const bitcoinConversion = (e) => {
     if (e.target.value == 'BTC') {
       // const polybit =
@@ -33,15 +38,26 @@ function StockData(props) {
           console.log('number of shares');
           console.log(quantityBitcoin);
 
+          // changes the currency to BTC and total = quantity
+          console.log('Set Value');
+          setCurrency('BTC');
+          setValue(quantityBitcoin);
+          console.log(currency);
+
           // setBitcoin(bitPrice);
-          alert('You can buy ' + quantityBitcoin + ' shares of bitcoin');
+          // alert('You can buy ' + quantityBitcoin + ' shares of bitcoin');
         })
 
         .catch((error) => {
           console.log(error);
         });
+
       // console.log('bitcoin check');
       // console.log(bitcoin);
+    } else if (e.target.value == 'USD') {
+      setCurrency('USD');
+      setValue(portfolio).toFixed(2);
+      return;
     }
   };
 
@@ -71,10 +87,14 @@ function StockData(props) {
         // promise or
         let newValue = Number(portfolio) + Number(currTotal);
         setPortfolio(newValue);
+        setValue(newValue.toFixed(2));
+
         setPrice(tempPrice);
         setTotal(currTotal);
 
         updateData([...data, stock]);
+
+        setCurrency('USD');
       })
       .catch((error) => {
         console.log(error);
@@ -85,7 +105,15 @@ function StockData(props) {
   };
 
   const DeleteStock = (index) => {
-    // Create a copy of row data without the current row
+    // currentValue of stock investment
+    const decrement = data[index][3];
+    console.log(decrement);
+    const newVal = Number(portfolio) - Number(decrement);
+    setPortfolio(newVal);
+    setValue(newVal.toFixed(2));
+    setCurrency('USD');
+
+    // works
     const newData = [...data.slice(0, index), ...data.slice(index + 1)];
     // Update state
     updateData(newData);
@@ -94,12 +122,12 @@ function StockData(props) {
     <div>
       <div className='totalDisplay' id='disp'>
         <div className='value' id='value'>
-          Total: {portfolio}
+          Total: {value} {currency}
         </div>
-        <StockDisplay total={data} />
-        <div className='currency-ticker' id='ticker'>
+        {/* <StockDisplay total={data} /> */}
+        {/* <div className='currency-ticker' id='ticker'>
           USD
-        </div>
+        </div> */}
       </div>
 
       <div className='add-conversion'>
