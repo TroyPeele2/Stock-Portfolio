@@ -29,14 +29,6 @@ function Portfolio() {
       </div>
       <div></div>
 
-      {/* <form>
-        <label htmlFor=''>
-          Convert to another currency
-          <input type='text' />
-        </label>
-        <input type='submit'></input>
-      </form> */}
-
       <StockData addItem={addItemToData} />
     </div>
   );

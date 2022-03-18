@@ -4,7 +4,6 @@ function StockDisplay({ total }) {
       ? total.reduce((a, b) => a + parseFloat(b[3]), 0).toFixed(2)
       : 0;
 
-  // console.log(total);
   return (
     <div className='currency-total'>
       Total:

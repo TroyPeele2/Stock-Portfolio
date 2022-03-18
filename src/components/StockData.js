@@ -15,12 +15,6 @@ function StockData(props) {
   const [currency, setCurrency] = useState('USD');
   const [value, setValue] = useState(0);
 
-  // making  a call to an api to get a bitcoin request.
-  // useEffect(function changeValuation(amount, tick) {
-  //   setCurrency(tick);
-  //   setValue(amount);
-  // });
-
   const bitcoinConversion = (e) => {
     if (e.target.value == 'BTC') {
       // const polybit =
@@ -43,17 +37,11 @@ function StockData(props) {
           setCurrency('BTC');
           setValue(quantityBitcoin);
           console.log(currency);
-
-          // setBitcoin(bitPrice);
-          // alert('You can buy ' + quantityBitcoin + ' shares of bitcoin');
         })
 
         .catch((error) => {
           console.log(error);
         });
-
-      // console.log('bitcoin check');
-      // console.log(bitcoin);
     } else if (e.target.value == 'USD') {
       setCurrency('USD');
       setValue(portfolio).toFixed(2);
@@ -61,7 +49,6 @@ function StockData(props) {
     }
   };
 
-  ///////////
   // handles form on click function to add another stock to the portfolio
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -72,7 +59,6 @@ function StockData(props) {
       '/prev?adjusted=true&apiKey=SuaIlAqCImCfcixB2Qn3FBuZP1mkqkfl';
 
     // makes get request call to polygon.io api to get stock data
-    // console.log('axios request');
     axios
       .get(stockData)
       .then((response) => {
@@ -84,14 +70,12 @@ function StockData(props) {
         let currTotal = (tempPrice * quantity).toFixed(2);
         let stock = [ticker, quantity, tempPrice, currTotal];
 
-        // promise or
+        // set the calculated values and update data
         let newValue = Number(portfolio) + Number(currTotal);
         setPortfolio(newValue);
         setValue(newValue.toFixed(2));
-
         setPrice(tempPrice);
         setTotal(currTotal);
-
         updateData([...data, stock]);
 
         setCurrency('USD');
@@ -113,9 +97,9 @@ function StockData(props) {
     setValue(newVal.toFixed(2));
     setCurrency('USD');
 
-    // works
+    // delete the stock from the data
     const newData = [...data.slice(0, index), ...data.slice(index + 1)];
-    // Update state
+
     updateData(newData);
   };
   return (

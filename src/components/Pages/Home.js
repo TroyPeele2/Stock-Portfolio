@@ -23,7 +23,7 @@ export class Home extends Component {
             another Crypto
           </p>
 
-          <p className='video-recording'>Final Video Recording will be here</p>
+          <p className='video-recording'></p>
           <img className='image' src={image} />
         </div>
       </div>
